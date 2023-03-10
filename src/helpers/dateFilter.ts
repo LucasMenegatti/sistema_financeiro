@@ -15,7 +15,7 @@ export const filterListByMonth = (list: IItem[], date: string): IItem[] => {
 export const formatDate = (date: Date):string => {
     let year = date.getFullYear();
     let month = String(date.getMonth()+1);
-    let day = String(date.getDay());
+    let day = String(date.getDate());
     return `${day.padStart(2,'0')}/${month.padStart(2,'0')}/${year}`;
 }
 
@@ -28,11 +28,11 @@ export const formatCurrentMonth = (currentMonth: string):string => {
 export const dateToInputDate = (date: Date):string => {
     let year = date.getFullYear();
     let month = String(date.getMonth()+1);
-    let day = String(date.getDay()-2);
+    let day = String(date.getDate());
     return `${year}-${month.padStart(2,'0')}-${day.padStart(2,'0')}`;
 }
 
 export const newDateAdjusted = (date: string):Date => {
     let [year, month, day] = date.split('-');
-    return new Date(Number(year), Number(month)-1, parseInt(day))
+    return new Date(Number(year), Number(month)-1, Number(day))
 }

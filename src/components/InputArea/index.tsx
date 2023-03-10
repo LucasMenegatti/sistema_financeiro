@@ -9,7 +9,13 @@ type Props = {
 }
 
 const InputArea = ({ onAdd }: Props) => {
-    const [inpDate, setInpDate] = useState(dateToInputDate(new Date()))
+    const getTodayDate = () => {
+        const Hoje = new Date();
+        Hoje.toLocaleDateString('pt-br');
+        return Hoje;
+    }
+
+    const [inpDate, setInpDate] = useState(dateToInputDate(getTodayDate()))
     const [inpCategory, setInpCategory] = useState('')
     const [inpTitle, setInpTitle] = useState('')
     const [inpValue, setInpValue] = useState('')
@@ -29,12 +35,12 @@ const InputArea = ({ onAdd }: Props) => {
             title: inpTitle,
             value: parseFloat(inpValue)
         };
-        onAdd(newItem)
+        onAdd(newItem);
         resetForm();
     }
 
     const resetForm = () => {
-        setInpDate(dateToInputDate(new Date()))
+        setInpDate(inpDate)
         setInpCategory('')
         setInpTitle('')
         setInpValue('')
@@ -52,7 +58,7 @@ const InputArea = ({ onAdd }: Props) => {
                     <C.FormInput
                         type={'date'}
                         value={inpDate}
-                        onChange={e => setInpDate(e.target.value)}
+                        onChange={e => {setInpDate(e.target.value)}}
                         empty={false}
                     />
                 </C.FormItem>
